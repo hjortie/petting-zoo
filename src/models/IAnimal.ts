@@ -10,3 +10,16 @@ export interface IAnimal {
   isFed: boolean;
   lastFed: string;
 }
+
+export const defaultAnimal: IAnimal = {
+  id: 0,
+  name: "",
+  latinName: "",
+  yearOfBirth: 0,
+  shortDescription: "",
+  longDescription: "",
+  imageUrl: "",
+  medicine: "",
+  isFed: false,
+  lastFed: "",
+};
