@@ -19,6 +19,26 @@ export const AnimalReducer = (
     case AnimalActionTypes.LOADED:
       return JSON.parse(action.payload) as IAnimal[];
 
+    case AnimalActionTypes.FED:
+      const selectedAnimal = animals.find((a) => a.id === +action.payload);
+      if (!selectedAnimal) {
+        return animals;
+      } else {
+        return animals.map((a) => {
+          if (a.id === selectedAnimal.id) {
+            const currentTime = new Date().getTime();
+            const lastFedTime = new Date(a.lastFed).getTime();
+            const isRecentlyFed = currentTime - lastFedTime < 14400000; //Är det mindre än 4h i ms sedan matning?
+            return {
+              ...a,
+              lastFed: new Date().toString(),
+              isFed: !isRecentlyFed,
+            };
+          }
+          return a;
+        });
+      }
+
     default:
       return animals;
   }
