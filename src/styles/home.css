@@ -3,10 +3,22 @@
   grid-template-columns: repeat(3, 2fr);
   gap: 2rem;
 }
+.animals-container a {
+  text-decoration: none;
+  color: #131513;
+}
+.animals-container a:visited {
+  color: #131513;
+}
+.animals-container a:active {
+  color: #131513;
+}
 .animals-container .animal-container {
   padding: 3rem;
+  display: flex;
+  flex-direction: column;
   border-radius: 10px;
-  background-color: rgba(255, 255, 255, 0.2);
+  background-color: rgba(255, 255, 255, 0.4);
   -webkit-backdrop-filter: blur(10px);
           backdrop-filter: blur(10px);
 }/*# sourceMappingURL=home.css.map */

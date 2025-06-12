@@ -2,6 +2,7 @@ import { useParams } from "react-router";
 import { AnimalContext } from "../contexts/AnimalContext";
 import { useContext } from "react";
 import { AnimalActionTypes } from "../reducers/AnimalReducer";
+import "../styles/animalPage.css";
 
 export const Animal = () => {
   const { id } = useParams<{ id: string }>();
@@ -23,21 +24,28 @@ export const Animal = () => {
   }
   return (
     <>
-      <div className="image-container">
-        <img src={selectedAnimal.imageUrl} alt={selectedAnimal.name} />
-      </div>
-      <h2>{selectedAnimal.name}</h2>
-      <p>{selectedAnimal.latinName}</p>
-      <p>{selectedAnimal.yearOfBirth}</p>
-      <span>{selectedAnimal.longDescription}</span>
-      <button
-        disabled={selectedAnimal.isFed}
-        onClick={() => {
-          toggleFed(selectedAnimal.id);
-        }}
-      >
-        Mata {selectedAnimal.name}
-      </button>
+      <section className="selected-animal-container">
+        <div className="image-container">
+          <img src={selectedAnimal.imageUrl} alt={selectedAnimal.name} />
+        </div>
+        <div className="info-container">
+          <h2>{selectedAnimal.name}</h2>
+          <div className="info-minor-content">
+            <span>{selectedAnimal.latinName}</span>
+            <span>{selectedAnimal.yearOfBirth}</span>
+          </div>
+        </div>
+        <span>{selectedAnimal.longDescription}</span>
+        <button
+          className="feed-btn"
+          disabled={selectedAnimal.isFed}
+          onClick={() => {
+            toggleFed(selectedAnimal.id);
+          }}
+        >
+          Mata {selectedAnimal.name}
+        </button>
+      </section>
     </>
   );
 };

@@ -3,6 +3,7 @@ import { NavLink, Outlet } from "react-router";
 import { get } from "../services/animalService";
 import { AnimalContext } from "../contexts/AnimalContext";
 import { AnimalActionTypes, AnimalReducer } from "../reducers/AnimalReducer";
+import "../styles/layout.css";
 
 export const Layout = () => {
   const [hasFetched, setHasFetched] = useState(false);
@@ -31,7 +32,10 @@ export const Layout = () => {
           value={{ animals, animalDispatch: animalDispatch }}
         >
           <header>
-            <NavLink to="/">Hem</NavLink>
+            <h1>Elins 4H-gård</h1>
+            <nav>
+              <NavLink to="/">Hem</NavLink>
+            </nav>
           </header>
           <main>
             <Outlet />
