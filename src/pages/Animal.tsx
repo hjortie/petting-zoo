@@ -4,6 +4,7 @@ import { useContext } from "react";
 import { AnimalActionTypes } from "../reducers/AnimalReducer";
 import "../styles/animalPage.scss";
 import { handleError } from "../helpers/handleError";
+import { AnimalHunger } from "../components/AnimalHunger";
 
 export const Animal = () => {
   const { id } = useParams<{ id: string }>();
@@ -41,6 +42,7 @@ export const Animal = () => {
           </div>
         </div>
         <span>{selectedAnimal.longDescription}</span>
+        <AnimalHunger animalId={selectedAnimal.id}></AnimalHunger>
         <button
           className="feed-btn"
           disabled={selectedAnimal.isFed}
