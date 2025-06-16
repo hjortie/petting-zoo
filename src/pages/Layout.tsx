@@ -3,7 +3,7 @@ import { NavLink, Outlet } from "react-router";
 import { get } from "../services/animalService";
 import { AnimalContext } from "../contexts/AnimalContext";
 import { AnimalActionTypes, AnimalReducer } from "../reducers/AnimalReducer";
-import "../styles/layout.css";
+import "../styles/layout.scss";
 
 export const Layout = () => {
   const [hasFetched, setHasFetched] = useState(false);

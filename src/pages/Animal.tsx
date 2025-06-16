@@ -2,7 +2,7 @@ import { useParams } from "react-router";
 import { AnimalContext } from "../contexts/AnimalContext";
 import { useContext } from "react";
 import { AnimalActionTypes } from "../reducers/AnimalReducer";
-import "../styles/animalPage.css";
+import "../styles/animalPage.scss";
 
 export const Animal = () => {
   const { id } = useParams<{ id: string }>();

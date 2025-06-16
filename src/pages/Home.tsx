@@ -1,7 +1,7 @@
 import { useContext } from "react";
 import { AnimalContext } from "../contexts/AnimalContext";
 import { AnimalPresentation } from "../components/AnimalPresentation";
-import "../styles/home.css";
+import "../styles/home.scss";
 import { href, Link } from "react-router";
 
 export const Home = () => {

@@ -1,5 +1,5 @@
 import type { IAnimal } from "../models/IAnimal";
-import "../styles/animalPresentation.css";
+import "../styles/animalPresentation.scss";
 import { AnimalHunger } from "./AnimalHunger";
 
 type AnimalPresentationProps = {
