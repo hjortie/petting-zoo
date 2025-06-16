@@ -1,4 +1,6 @@
 @use "./variables" as vars;
+@use "./mixins" as mixins;
+
 body {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   color: vars.$primary-text-color;
@@ -7,4 +9,7 @@ body {
   background-repeat: no-repeat;
   background-size: cover;
   background-attachment: fixed;
+}
+button {
+  @include mixins.primary-btn;
 }

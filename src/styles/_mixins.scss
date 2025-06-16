@@ -3,6 +3,7 @@
 @mixin card-style {
   padding: 3rem;
   display: flex;
+  height: min-content;
   flex-direction: column;
   border-radius: 10px;
   background-color: rgba(255, 255, 255, 0.4);
@@ -10,7 +11,16 @@
 }
 
 @mixin primary-btn {
+  font-family: inherit;
+  font-size: large;
   padding: 1rem;
   border-radius: 10px;
   background-color: vars.$primary-button-color;
+}
+
+@mixin secondary-btn {
+  border: none;
+  border-radius: 0px;
+  width: 100%;
+  background-color: vars.$secondary-button-color;
 }

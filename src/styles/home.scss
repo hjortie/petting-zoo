@@ -19,12 +19,10 @@
 
   .animal-container {
     @include mixins.card-style;
-    div {
-      display: flex;
-      padding-top: 1rem;
-      flex-direction: row;
-      align-items: center;
-      gap: 2rem;
+
+    .more-btn {
+      justify-self: end;
+      @include mixins.secondary-btn;
     }
   }
 }

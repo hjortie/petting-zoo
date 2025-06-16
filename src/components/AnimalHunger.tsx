@@ -3,6 +3,7 @@ import { AnimalContext } from "../contexts/AnimalContext";
 import fedIcon from "../assets/fed-n-happy.svg";
 import contentIcon from "../assets/content.svg";
 import hungryIcon from "../assets/hungry.svg";
+import "../styles/animalHunger.scss";
 
 type AnimalHungerProps = {
   animalId: number;
@@ -15,35 +16,46 @@ export const AnimalHunger = (props: AnimalHungerProps) => {
   if (!selectedAnimal) {
     return <h2>No animal with that ID</h2>;
   }
-
   const currentDate = new Date();
   const lastFedDate = new Date(selectedAnimal.lastFed);
+  const timeDifference = currentDate.getTime() - lastFedDate.getTime();
+
+  let hungerState = {
+    className: "",
+    icon: "",
+    message: "",
+  };
+
   //Om skillnaden är mindre än 3 h i millisekunder:
-  if (currentDate.getTime() - lastFedDate.getTime() < 10800000) {
-    return (
-      <div>
-        <img src={fedIcon} alt="" />
-        <p>Mätt och glad!</p>
-      </div>
-    );
-  } else {
-    //Om skillnaden är lika med eller större än 5 h i millisekunder
-    if (currentDate.getTime() - lastFedDate.getTime() >= 18000000) {
-      return (
-        <div>
-          <img src={hungryIcon} alt="" />
-          <p>Oj nu behöver {selectedAnimal.name} äta!</p>
-        </div>
-      );
-    }
-    //Om skillnaden är lika med eller större än 3 h i millisekunder
-    if (currentDate.getTime() - lastFedDate.getTime() >= 10800000) {
-      return (
-        <div>
-          <img src={contentIcon} alt="" />
-          <p>Snart dags för mat</p>
-        </div>
-      );
-    }
+  if (timeDifference < 10800000) {
+    hungerState = {
+      className: "fed",
+      icon: fedIcon,
+      message: "Mätt och glad!",
+    };
   }
+  //Om skillnaden är lika med eller större än 5 h i millisekunder
+  else if (timeDifference >= 18000000) {
+    hungerState = {
+      className: "hungry",
+      icon: hungryIcon,
+      message: `Oj nu behöver ${selectedAnimal.name} äta!`,
+    };
+  }
+  //Om skillnaden är mellan 3 och 5 h
+  else {
+    hungerState = {
+      className: "content",
+      icon: contentIcon,
+      message: "Snart dags för mat",
+    };
+  }
+  return (
+    <>
+      <div className={`hunger-state ${hungerState.className}`}>
+        <img src={hungerState.icon} alt="" />
+        <p>{hungerState.message}</p>
+      </div>
+    </>
+  );
 };

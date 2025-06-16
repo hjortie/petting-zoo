@@ -11,8 +11,9 @@ export const Home = () => {
       <div className="animals-container">
         {animals.map((a) => (
           <div key={a.id} className="animal-container">
+            <AnimalPresentation animal={a} />
             <Link key={a.id} to={href("/animal/:id", { id: a.id.toString() })}>
-              <AnimalPresentation animal={a} />
+              <button className="more-btn">Läs mer om {a.name} här &gt;</button>
             </Link>
           </div>
         ))}
