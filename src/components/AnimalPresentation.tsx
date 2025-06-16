@@ -1,3 +1,4 @@
+import { handleError } from "../helpers/handleError";
 import type { IAnimal } from "../models/IAnimal";
 import "../styles/animalPresentation.scss";
 import { AnimalHunger } from "./AnimalHunger";
@@ -9,7 +10,11 @@ export const AnimalPresentation = (props: AnimalPresentationProps) => {
   return (
     <>
       <div className="image-container">
-        <img src={props.animal.imageUrl} alt={props.animal.name} />
+        <img
+          src={props.animal.imageUrl}
+          alt={props.animal.name}
+          onError={handleError}
+        />
       </div>
       <h2>{props.animal.name}</h2>
       <span>{props.animal.shortDescription}</span>

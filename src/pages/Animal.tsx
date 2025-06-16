@@ -3,6 +3,7 @@ import { AnimalContext } from "../contexts/AnimalContext";
 import { useContext } from "react";
 import { AnimalActionTypes } from "../reducers/AnimalReducer";
 import "../styles/animalPage.scss";
+import { handleError } from "../helpers/handleError";
 
 export const Animal = () => {
   const { id } = useParams<{ id: string }>();
@@ -26,7 +27,11 @@ export const Animal = () => {
     <>
       <section className="selected-animal-container">
         <div className="image-container">
-          <img src={selectedAnimal.imageUrl} alt={selectedAnimal.name} />
+          <img
+            src={selectedAnimal.imageUrl}
+            alt={selectedAnimal.name}
+            onError={handleError}
+          />
         </div>
         <div className="info-container">
           <h2>{selectedAnimal.name}</h2>
