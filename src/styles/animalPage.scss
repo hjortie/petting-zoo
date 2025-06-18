@@ -31,12 +31,14 @@
     @include mixins.primary-btn;
     &:hover {
       @include mixins.grow-animation(0.3s, ease-in);
+      @include mixins.ring-outline(vars.$secondary-button-color);
     }
 
     &:disabled {
       cursor: not-allowed;
-      opacity: 0.6;
+      opacity: 0.9;
       animation: none;
+      box-shadow: none;
     }
   }
 }
