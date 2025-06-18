@@ -9,7 +9,6 @@
 
   .image-container {
     max-width: 100%;
-
     img {
       width: 100%;
     }
@@ -30,5 +29,14 @@
 
   .feed-btn {
     @include mixins.primary-btn;
+    &:hover {
+      @include mixins.grow-animation(0.3s, ease-in);
+    }
+
+    &:disabled {
+      cursor: not-allowed;
+      opacity: 0.6;
+      animation: none;
+    }
   }
 }

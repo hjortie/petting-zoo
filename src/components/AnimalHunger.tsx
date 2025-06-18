@@ -21,7 +21,6 @@ export const AnimalHunger = (props: AnimalHungerProps) => {
   const timeDifference = currentDate.getTime() - lastFedDate.getTime();
 
   let hungerState = {
-    className: "",
     icon: "",
     message: "",
   };
@@ -29,7 +28,6 @@ export const AnimalHunger = (props: AnimalHungerProps) => {
   //Om skillnaden är mindre än 3 h i millisekunder:
   if (timeDifference < 10800000) {
     hungerState = {
-      className: "fed",
       icon: fedIcon,
       message: "Mätt och glad!",
     };
@@ -37,7 +35,6 @@ export const AnimalHunger = (props: AnimalHungerProps) => {
   //Om skillnaden är lika med eller större än 5 h i millisekunder
   else if (timeDifference >= 18000000) {
     hungerState = {
-      className: "hungry",
       icon: hungryIcon,
       message: `Oj nu behöver ${selectedAnimal.name} äta!`,
     };
@@ -45,14 +42,13 @@ export const AnimalHunger = (props: AnimalHungerProps) => {
   //Om skillnaden är mellan 3 och 5 h
   else {
     hungerState = {
-      className: "content",
       icon: contentIcon,
       message: "Snart dags för mat",
     };
   }
   return (
     <>
-      <div className={`hunger-state ${hungerState.className}`}>
+      <div className={"hunger-state"}>
         <img src={hungerState.icon} alt="" />
         <p>{hungerState.message}</p>
       </div>

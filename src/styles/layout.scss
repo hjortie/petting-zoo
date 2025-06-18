@@ -1,7 +1,25 @@
+@use "./variables" as vars;
+
 header {
   height: 10em;
+  place-self: center;
+  text-align: center;
 
   a {
-    font-size: large;
+    display: flex;
+    flex-direction: column;
+    font-weight: 600;
+    color: inherit;
+
+    &:hover {
+      color: vars.$hover-button-color;
+    }
+    &:active {
+      text-decoration: underline;
+    }
+
+    img {
+      max-height: 50px;
+    }
   }
 }

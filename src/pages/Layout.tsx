@@ -4,6 +4,7 @@ import { get } from "../services/animalService";
 import { AnimalContext } from "../contexts/AnimalContext";
 import { AnimalActionTypes, AnimalReducer } from "../reducers/AnimalReducer";
 import "../styles/layout.scss";
+import home from "../assets/home.svg";
 
 export const Layout = () => {
   const [hasFetched, setHasFetched] = useState(false);
@@ -34,7 +35,10 @@ export const Layout = () => {
           <header>
             <h1>Elins 4H-gård</h1>
             <nav>
-              <NavLink to="/">Hem</NavLink>
+              <NavLink to="/">
+                <img src={home} alt="Home" />
+                Home
+              </NavLink>
             </nav>
           </header>
           <main>

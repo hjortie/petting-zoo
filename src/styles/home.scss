@@ -1,28 +1,28 @@
 @use "./variables" as vars;
 @use "./mixins" as mixins;
+
 .animals-container {
   display: grid;
   grid-template-columns: repeat(3, 2fr);
   gap: 2rem;
 
-  a {
-    text-decoration: none;
-    color: vars.$primary-text-color;
-
-    &:visited {
-      color: vars.$primary-text-color;
-    }
-    &:active {
-      color: vars.$primary-text-color;
-    }
-  }
-
   .animal-container {
     @include mixins.card-style;
+
+    .image-container {
+      max-width: 100%;
+      img {
+        width: 100%;
+      }
+    }
 
     .more-btn {
       justify-self: end;
       @include mixins.secondary-btn;
+
+      &:hover {
+        @include mixins.grow-animation(0.3s, ease-in);
+      }
     }
   }
 }

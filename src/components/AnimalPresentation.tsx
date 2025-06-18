@@ -1,6 +1,5 @@
 import { handleError } from "../helpers/handleError";
 import type { IAnimal } from "../models/IAnimal";
-import "../styles/animalPresentation.scss";
 import { AnimalHunger } from "./AnimalHunger";
 
 type AnimalPresentationProps = {

@@ -3,14 +3,15 @@
 @mixin card-style {
   padding: 3rem;
   display: flex;
-  height: min-content;
   flex-direction: column;
+  justify-content: space-between;
   border-radius: 10px;
   background-color: rgba(255, 255, 255, 0.4);
   backdrop-filter: blur(10px);
 }
 
 @mixin primary-btn {
+  cursor: pointer;
   font-family: inherit;
   font-size: large;
   padding: 1rem;
@@ -19,8 +20,22 @@
 }
 
 @mixin secondary-btn {
+  cursor: pointer;
   border: none;
-  border-radius: 0px;
+  border-radius: 2px;
   width: 100%;
   background-color: vars.$secondary-button-color;
+}
+
+@keyframes grow {
+  from {
+    transform: scale(1);
+  }
+  to {
+    transform: scale(1.05);
+  }
+}
+
+@mixin grow-animation($duration, $timing-function) {
+  animation: grow $duration $timing-function forwards;
 }
