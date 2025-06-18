@@ -22,6 +22,7 @@
 
     .more-btn {
       place-self: end;
+      width: 100%;
       @include mixins.primary-btn;
 
       &:hover {

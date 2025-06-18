@@ -12,16 +12,26 @@ export const Layout = () => {
 
   useEffect(() => {
     const getAnimals = async () => {
-      try {
-        const animals = await get();
+      const storedAnimals = localStorage.getItem("storedAnimals");
+      if (storedAnimals) {
         animalDispatch({
           type: AnimalActionTypes.LOADED,
-          payload: JSON.stringify(animals),
+          payload: storedAnimals,
         });
-      } catch (error) {
-        console.error(error);
-      } finally {
         setHasFetched(true);
+      } else {
+        try {
+          const animals = await get();
+          animalDispatch({
+            type: AnimalActionTypes.LOADED,
+            payload: JSON.stringify(animals),
+          });
+          localStorage.setItem("storedAnimals", JSON.stringify(animals));
+        } catch (error) {
+          console.error(error);
+        } finally {
+          setHasFetched(true);
+        }
       }
     };
     if (!hasFetched) getAnimals();

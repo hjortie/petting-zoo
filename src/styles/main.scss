@@ -5,11 +5,8 @@ body {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   color: vars.$primary-text-color;
   height: 100vh;
-  background-image: url("./forest.jpg");
+  background-image: url("/forest.jpg");
   background-repeat: no-repeat;
   background-size: cover;
   background-attachment: fixed;
-}
-button {
-  @include mixins.primary-btn;
 }

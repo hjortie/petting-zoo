@@ -15,16 +15,19 @@ export const AnimalReducer = (
   animals: IAnimal[],
   action: AnimalAction
 ): IAnimal[] => {
+  let updatedAnimals = animals;
+
   switch (action.type) {
     case AnimalActionTypes.LOADED:
-      return JSON.parse(action.payload) as IAnimal[];
+      updatedAnimals = JSON.parse(action.payload) as IAnimal[];
+      break;
 
     case AnimalActionTypes.FED:
       const selectedAnimal = animals.find((a) => a.id === +action.payload);
       if (!selectedAnimal) {
-        return animals;
+        updatedAnimals = animals;
       } else {
-        return animals.map((a) => {
+        updatedAnimals = animals.map((a) => {
           if (a.id === selectedAnimal.id) {
             const currentTime = new Date().getTime();
             const lastFedTime = new Date(a.lastFed).getTime();
@@ -38,8 +41,10 @@ export const AnimalReducer = (
           return a;
         });
       }
-
+      break;
     default:
-      return animals;
+      updatedAnimals = animals;
   }
+  localStorage.setItem("storedAnimals", JSON.stringify(updatedAnimals));
+  return updatedAnimals;
 };
