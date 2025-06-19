@@ -26,4 +26,9 @@ header {
 }
 .wrapper {
   padding-bottom: 2rem;
+
+  main {
+    display: flex;
+    justify-content: center;
+  }
 }
