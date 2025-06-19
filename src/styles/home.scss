@@ -32,3 +32,10 @@
     }
   }
 }
+
+@media (max-width: 720px) {
+  .animals-container {
+    display: flex;
+    flex-direction: column;
+  }
+}
