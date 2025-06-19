@@ -1,39 +1,20 @@
 import { useParams } from "react-router";
 import { AnimalContext } from "../contexts/AnimalContext";
 import { useContext, useState } from "react";
-import { AnimalActionTypes } from "../reducers/AnimalReducer";
 import "../styles/animalPage.scss";
 import { handleError } from "../helpers/handleError";
 import { AnimalHunger } from "../components/AnimalHunger";
 import heartIcon from "../assets/heart.svg";
 import foodIcon from "../assets/bone.svg";
+import { useFeedAnimal } from "../hooks/useFeedAnimal";
+import { AnimalIcons } from "../components/AnimalIcons";
 
 export const Animal = () => {
   const { id } = useParams<{ id: string }>();
-  const { animals, animalDispatch } = useContext(AnimalContext);
+  const { animals } = useContext(AnimalContext);
   const [showHeart, setShowHeart] = useState(false);
   const [showFood, setShowFood] = useState(false);
-
-  const feed = (animalId: number) => {
-    animalDispatch({
-      type: AnimalActionTypes.FED,
-      payload: JSON.stringify(animalId),
-    });
-    animalDispatch({
-      type: AnimalActionTypes.TOGGLEDISFED,
-      payload: JSON.stringify(animalId),
-    });
-
-    setTimeout(() => {
-      animalDispatch({
-        type: AnimalActionTypes.TOGGLEDISFED,
-        payload: JSON.stringify(animalId),
-      });
-    }, 14400000);
-
-    setShowFood(true);
-    setTimeout(() => setShowFood(false), 2000);
-  };
+  const { feedAnimal } = useFeedAnimal();
 
   const patAnimal = () => {
     setShowHeart(true);
@@ -62,17 +43,12 @@ export const Animal = () => {
               alt={selectedAnimal.name}
               onError={handleError}
             />
-
-            {showHeart && (
-              <div className="heart-icon">
-                <img src={heartIcon} alt="" />
-              </div>
-            )}
-            {showFood && (
-              <div className="food-icon">
-                <img src={foodIcon} alt="" />
-              </div>
-            )}
+            <AnimalIcons
+              showHeart={showHeart}
+              showFood={showFood}
+              heartIcon={heartIcon}
+              foodIcon={foodIcon}
+            />
           </div>
         </div>
         <div className="btn-container">
@@ -80,7 +56,9 @@ export const Animal = () => {
             className="feed-btn"
             disabled={selectedAnimal.isFed}
             onClick={() => {
-              feed(selectedAnimal.id);
+              feedAnimal(selectedAnimal.id);
+              setShowFood(true);
+              setTimeout(() => setShowFood(false), 2000);
             }}
           >
             Mata {selectedAnimal.name}
