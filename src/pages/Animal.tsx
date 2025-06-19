@@ -5,6 +5,7 @@ import { AnimalActionTypes } from "../reducers/AnimalReducer";
 import "../styles/animalPage.scss";
 import { handleError } from "../helpers/handleError";
 import { AnimalHunger } from "../components/AnimalHunger";
+import heartIcon from "../assets/heart.svg";
 
 export const Animal = () => {
   const { id } = useParams<{ id: string }>();
@@ -46,7 +47,11 @@ export const Animal = () => {
               onError={handleError}
             />
 
-            {showHeart && <div className="heart-icon">❤️</div>}
+            {showHeart && (
+              <div className="heart-icon">
+                <img src={heartIcon} alt="" />
+              </div>
+            )}
           </div>
         </div>
         <div className="btn-container">
