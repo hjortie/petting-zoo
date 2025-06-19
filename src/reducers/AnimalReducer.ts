@@ -3,7 +3,7 @@ import type { IAnimal } from "../models/IAnimal";
 export enum AnimalActionTypes {
   LOADED,
   FED,
-  PETTED,
+  TOGGLEDISFED,
 }
 
 export type AnimalAction = {
@@ -29,18 +29,22 @@ export const AnimalReducer = (
       } else {
         updatedAnimals = animals.map((a) => {
           if (a.id === selectedAnimal.id) {
-            const currentTime = new Date().getTime();
-            const lastFedTime = new Date(a.lastFed).getTime();
-            const isRecentlyFed = currentTime - lastFedTime < 14400000; //Är det mindre än 4h i ms sedan matning?
             return {
               ...a,
               lastFed: new Date().toString(),
-              isFed: !isRecentlyFed,
             };
           }
           return a;
         });
       }
+      break;
+    case AnimalActionTypes.TOGGLEDISFED:
+      updatedAnimals = animals.map((a) => {
+        if (a.id === +action.payload) {
+          return { ...a, isFed: !a.isFed };
+        }
+        return a;
+      });
       break;
     default:
       updatedAnimals = animals;

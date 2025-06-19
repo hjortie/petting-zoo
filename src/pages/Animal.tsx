@@ -6,17 +6,33 @@ import "../styles/animalPage.scss";
 import { handleError } from "../helpers/handleError";
 import { AnimalHunger } from "../components/AnimalHunger";
 import heartIcon from "../assets/heart.svg";
+import foodIcon from "../assets/bone.svg";
 
 export const Animal = () => {
   const { id } = useParams<{ id: string }>();
   const { animals, animalDispatch } = useContext(AnimalContext);
   const [showHeart, setShowHeart] = useState(false);
+  const [showFood, setShowFood] = useState(false);
 
-  const toggleFed = (animalId: number) => {
+  const feed = (animalId: number) => {
     animalDispatch({
       type: AnimalActionTypes.FED,
       payload: JSON.stringify(animalId),
     });
+    animalDispatch({
+      type: AnimalActionTypes.TOGGLEDISFED,
+      payload: JSON.stringify(animalId),
+    });
+
+    setTimeout(() => {
+      animalDispatch({
+        type: AnimalActionTypes.TOGGLEDISFED,
+        payload: JSON.stringify(animalId),
+      });
+    }, 14400000);
+
+    setShowFood(true);
+    setTimeout(() => setShowFood(false), 2000);
   };
 
   const patAnimal = () => {
@@ -52,6 +68,11 @@ export const Animal = () => {
                 <img src={heartIcon} alt="" />
               </div>
             )}
+            {showFood && (
+              <div className="food-icon">
+                <img src={foodIcon} alt="" />
+              </div>
+            )}
           </div>
         </div>
         <div className="btn-container">
@@ -59,7 +80,7 @@ export const Animal = () => {
             className="feed-btn"
             disabled={selectedAnimal.isFed}
             onClick={() => {
-              toggleFed(selectedAnimal.id);
+              feed(selectedAnimal.id);
             }}
           >
             Mata {selectedAnimal.name}
