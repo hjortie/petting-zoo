@@ -73,3 +73,13 @@
     transform: scale(2);
   }
 }
+
+@media (max-width: 720px) {
+  .heart-icon,
+  .food-icon {
+    z-index: 1;
+    img {
+      height: 30px;
+    }
+  }
+}
