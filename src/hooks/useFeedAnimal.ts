@@ -8,18 +8,18 @@ export const useFeedAnimal = () => {
   const feedAnimal = (animalId: number) => {
     animalDispatch({
       type: AnimalActionTypes.FED,
-      payload: JSON.stringify(animalId),
+      payload: animalId.toString(),
     });
 
     animalDispatch({
       type: AnimalActionTypes.TOGGLEDISFED,
-      payload: JSON.stringify(animalId),
+      payload: animalId.toString(),
     });
 
     setTimeout(() => {
       animalDispatch({
         type: AnimalActionTypes.TOGGLEDISFED,
-        payload: JSON.stringify(animalId),
+        payload: animalId.toString(),
       });
     }, 14400000);
   };
