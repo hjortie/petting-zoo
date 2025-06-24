@@ -8,16 +8,18 @@ interface AnimalIconProps {
 export const AnimalIcons = (props: AnimalIconProps) => {
   return (
     <>
-      {props.showHeart && (
-        <div className="heart-icon">
-          <img src={props.heartIcon} alt="" />
-        </div>
-      )}
-      {props.showFood && (
-        <div className="food-icon">
-          <img src={props.foodIcon} alt="" />
-        </div>
-      )}
+      <div className="icon-wrapper">
+        {props.showHeart && (
+          <div className="heart-icon">
+            <img src={props.heartIcon} alt="heart" />
+          </div>
+        )}
+        {props.showFood && (
+          <div className="food-icon">
+            <img src={props.foodIcon} alt="food" />
+          </div>
+        )}
+      </div>
     </>
   );
 };

@@ -9,18 +9,23 @@
   .image-container {
     max-width: 100%;
     position: relative;
+
     img {
       width: 100%;
     }
-    .heart-icon,
-    .food-icon {
+
+    .icon-wrapper {
       position: absolute;
-      top: 80%;
-      left: 45%;
-      z-index: 1;
+      top: 75%;
+      left: 50%;
       transform: translate(-50%, -50%);
-      font-size: 3rem;
-      animation: fade-in-out 2s ease-in-out;
+      z-index: 1;
+
+      .heart-icon,
+      .food-icon {
+        width: 90%;
+        animation: fade-in-out 2s ease-in-out;
+      }
     }
   }
 
