@@ -19,7 +19,13 @@ export const AnimalReducer = (
 
   switch (action.type) {
     case AnimalActionTypes.LOADED:
-      updatedAnimals = JSON.parse(action.payload) as IAnimal[];
+      const parsedAnimals = JSON.parse(action.payload) as IAnimal[];
+      const now = new Date().getTime();
+      updatedAnimals = parsedAnimals.map((a) => {
+        const fedTime = new Date(a.lastFed).getTime();
+        const hoursSinceFed = (now - fedTime) / 1000 / 60 / 60;
+        return { ...a, isFed: hoursSinceFed < 4 };
+      });
       break;
 
     case AnimalActionTypes.FED:

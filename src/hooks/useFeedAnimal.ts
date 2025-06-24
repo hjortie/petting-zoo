@@ -15,13 +15,6 @@ export const useFeedAnimal = () => {
       type: AnimalActionTypes.TOGGLEDISFED,
       payload: animalId.toString(),
     });
-
-    setTimeout(() => {
-      animalDispatch({
-        type: AnimalActionTypes.TOGGLEDISFED,
-        payload: animalId.toString(),
-      });
-    }, 14400000);
   };
 
   return { feedAnimal };
